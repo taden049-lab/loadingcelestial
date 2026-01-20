@@ -1,53 +1,418 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="ru">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script type="text/javascript">
-      document.write(
-        '<link rel="stylesheet" href="css/main.css?' + Math.random() + '">'
-      );
+    
+    <!-- CSS с кэшированием -->
+    <link rel="stylesheet" href="css/main.css?v=2.0" />
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Playfair+Display:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Иконки FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <title>Операция "Оверлорд" | Загрузка WW2 RP</title>
+    
+    <style>
+        /* Быстрые inline-стили для мгновенного отображения */
+        .preload-hide {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .preload-show {
+            opacity: 1;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+    </style>
+</head>
+<body class="preload-hide">
+    <!-- Фоновые слои -->
+    <div class="background-layer military-bg"></div>
+    <div class="overlay-layer"></div>
+    <div class="scanlines"></div>
+    <div class="film-grain"></div>
+    
+    <!-- Аудио элемент (неавтоплеевой) -->
+    <audio id="ambientAudio" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-sad-war-drum-579.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Основной контейнер -->
+    <div class="main-container">
+        <!-- Верхняя панель навигации -->
+        <nav class="military-nav">
+            <div class="nav-left">
+                <div class="faction-badge">
+                    <i class="fas fa-star-of-life"></i>
+                    <span>СОЮЗНИЧЕСКИЕ СИЛЫ</span>
+                </div>
+                <div class="server-status">
+                    <span class="status-indicator active"></span>
+                    <span id="playerCount">СВЯЗЬ: УСТАНОВЛЕНА</span>
+                </div>
+            </div>
+            
+            <div class="nav-center" id="announcement">
+                <i class="fas fa-bullhorn"></i>
+                <span class="announcement-text">ВНИМАНИЕ: Высадка в Нормандии начата. Все новобранцы - на сборные пункты!</span>
+            </div>
+            
+            <div class="nav-right">
+                <div class="nav-info">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span id="map">ТВД: Нормандия</span>
+                </div>
+                <div class="nav-info">
+                    <i class="fas fa-id-card"></i>
+                    <span id="steamid">ID: Загрузка...</span>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Основной контент -->
+        <main class="content-wrapper">
+            <!-- Левая панель - Информация о сервере -->
+            <div class="left-panel panel-military">
+                <div class="panel-header">
+                    <h2><i class="fas fa-tasks"></i> КОМАНДНЫЙ ЦЕНТР</h2>
+                </div>
+                
+                <div class="server-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="info-content">
+                            <span class="info-label">Операция</span>
+                            <span id="title" class="info-value">"Оверлорд"</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="info-content">
+                            <span class="info-label">Главнокомандующий</span>
+                            <span id="hostname" class="info-value">Штаб Союзников</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="info-content">
+                            <span class="info-label">Личный состав</span>
+                            <span id="players" class="info-value">0/100</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="info-content">
+                            <span class="info-label">Версия</span>
+                            <span class="info-value">WW2 DarkRP v2.5</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-divider">
+                    <span>БОЕВАЯ СВОДКА</span>
+                </div>
+                
+                <div class="battle-stats">
+                    <div class="stat">
+                        <span class="stat-value">74%</span>
+                        <span class="stat-label">Контроль территории</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">12</span>
+                        <span class="stat-label">Захваченных пунктов</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">48ч</span>
+                        <span class="stat-label">Длится операция</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Центральная панель - Загрузка и новости -->
+            <div class="center-panel">
+                <div class="welcome-title">
+                    <h2>ДОБРО ПОЖАЛОВАТЬ НА ПОЛЕ БОЯ, СОЛДАТ</h2>
+                    <h1 id="history">6 июня 1944 года. Нормандия, Франция</h1>
+                </div>
+                
+                <!-- Прогресс загрузки -->
+                <div class="loading-section panel-military">
+                    <div class="loading-header">
+                        <h3><i class="fas fa-sync-alt"></i> СТАТУС ЗАГРУЗКИ</h3>
+                        <div class="loading-status" id="debug">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Установка соединения...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="loading-progress">
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progressBar">
+                                <div class="progress-fill"></div>
+                                <div class="progress-stripes"></div>
+                            </div>
+                            <div class="progress-labels">
+                                <span id="progressText">Инициализация 0%</span>
+                                <span id="fileText">Ожидание команд...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="loading-tips">
+                        <h4><i class="fas fa-lightbulb"></i> ТАКТИЧЕСКИЕ УКАЗАНИЯ</h4>
+                        <p id="tipText">Держитесь своего отделения и следуйте приказам офицера. Одиночки - легкая цель для снайперов.</p>
+                    </div>
+                </div>
+                
+                <!-- Новости и события -->
+                <div class="news-section panel-military">
+                    <div class="news-header">
+                        <h3><i class="fas fa-newspaper"></i> СВОДКА С ФРОНТА</h3>
+                        <div class="news-time" id="currentTime">--:--</div>
+                    </div>
+                    
+                    <div class="news-ticker" id="newsContainer">
+                        <div class="news-item">
+                            <span class="news-time">06:30</span>
+                            <span class="news-text">Воздушный десант захватил ключевые мосты за линией фронта.</span>
+                        </div>
+                        <div class="news-item">
+                            <span class="news-time">07:15</span>
+                            <span class="news-text">Морская пехота закрепилась на пляже Омаха. Потери: значительные.</span>
+                        </div>
+                        <div class="news-item">
+                            <span class="news-time">08:45</span>
+                            <span class="news-text">Танковая колонна Шерманов прорвала первую линию обороны.</span>
+                        </div>
+                        <div class="news-item">
+                            <span class="news-time">09:20</span>
+                            <span class="news-text">Авиация Люфтваффе атаковала транспортные конвои. ПВО в состоянии боевой готовности.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Правая панель - Фракции и правила -->
+            <div class="right-panel panel-military">
+                <div class="panel-header">
+                    <h2><i class="fas fa-users-cog"></i> ВОЮЮЩИЕ СТОРОНЫ</h2>
+                </div>
+                
+                <div class="factions">
+                    <div class="faction faction-allies">
+                        <div class="faction-header">
+                            <i class="fas fa-star"></i>
+                            <h4>СОЮЗНИКИ</h4>
+                        </div>
+                        <ul class="faction-list">
+                            <li>Пехота США/Великобритании</li>
+                            <li>Офицерский состав</li>
+                            <li>Медицинская служба</li>
+                            <li>Инженерные войска</li>
+                            <li>Танковые экипажи</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="faction faction-axis">
+                        <div class="faction-header">
+                            <i class="fas fa-crosshairs"></i>
+                            <h4>СТРАНЫ ОСИ</h4>
+                        </div>
+                        <ul class="faction-list">
+                            <li>Вермахт / Ваффен-СС</li>
+                            <li>Офицеры и унтер-офицеры</li>
+                            <li>Санитары (Sanitäter)</li>
+                            <li>Саперы (Pioniere)</li>
+                            <li>Панцергренадеры</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="faction faction-civilian">
+                        <div class="faction-header">
+                            <i class="fas fa-user"></i>
+                            <h4>МИРНЫЕ ЖИТЕЛИ</h4>
+                        </div>
+                        <ul class="faction-list">
+                            <li>Местные жители</li>
+                            <li>Черный рынок</li>
+                            <li>Фермеры и рабочие</li>
+                            <li>Врачи и медсестры</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="panel-divider">
+                    <span>ПОЛЕВОЙ УСТАВ</span>
+                </div>
+                
+                <div class="rules">
+                    <div class="rule-item">
+                        <i class="fas fa-ban"></i>
+                        <span>Соблюдайте исторический антураж</span>
+                    </div>
+                    <div class="rule-item">
+                        <i class="fas fa-ban"></i>
+                        <span>Запрещено дезертирство и мародерство</span>
+                    </div>
+                    <div class="rule-item">
+                        <i class="fas fa-ban"></i>
+                        <span>Подчиняйтесь цепочке командования</span>
+                    </div>
+                    <div class="rule-item">
+                        <i class="fas fa-ban"></i>
+                        <span>Берегите доверенное оружие и технику</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Нижняя панель (футер) -->
+        <footer class="military-footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <i class="fas fa-headset"></i>
+                    <span>Дискорд: discord.gg/ww2rpgmod</span>
+                </div>
+                <div class="footer-center">
+                    <span>© 1944 ШТАБ СОЮЗНИЧЕСКИХ СИЛ | GARRY'S MOD WW2 DARKRP</span>
+                </div>
+                <div class="footer-right">
+                    <div class="audio-control" onclick="toggleAudio()">
+                        <i class="fas fa-volume-mute" id="audioIcon"></i>
+                        <span>ФОНОВЫЙ ЗВУК</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/config.js?v=2.0"></script>
+    <script src="js/main.js?v=2.0"></script>
+    
+    <!-- Инлайн скрипт для быстрой инициализации -->
+    <script>
+        // Быстрая инициализация
+        $(document).ready(function() {
+            // Показать контент после загрузки
+            setTimeout(function() {
+                $('body').removeClass('preload-hide').addClass('preload-show');
+            }, 100);
+            
+            // Установить текущее время
+            function updateTime() {
+                const now = new Date();
+                const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                                  now.getMinutes().toString().padStart(2, '0');
+                $('#currentTime').text(timeString);
+            }
+            
+            updateTime();
+            setInterval(updateTime, 60000);
+            
+            // Инициализация аудио
+            window.audioEnabled = false;
+            window.ambientAudio = document.getElementById('ambientAudio');
+        });
+        
+        // Управление аудио
+        function toggleAudio() {
+            window.audioEnabled = !window.audioEnabled;
+            const icon = $('#audioIcon');
+            
+            if (window.audioEnabled) {
+                window.ambientAudio.volume = 0.3;
+                window.ambientAudio.play().catch(e => {
+                    console.log("Автовоспроизведение заблокировано");
+                    window.audioEnabled = false;
+                });
+                icon.removeClass('fa-volume-mute').addClass('fa-volume-up');
+            } else {
+                window.ambientAudio.pause();
+                icon.removeClass('fa-volume-up').addClass('fa-volume-mute');
+            }
+        }
+        
+        // Функции для GMod (совместимость)
+        window.SetFilesTotal = function(total) {
+            console.log('Всего файлов:', total);
+        };
+        
+        window.SetFilesNeeded = function(needed) {
+            if (needed && needed !== "") {
+                $('#fileText').text('Файл: ' + needed);
+            }
+        };
+        
+        window.UpdateProgress = function(percent) {
+            const progress = Math.min(100, Math.max(0, percent * 100));
+            $('#progressBar .progress-fill').css('width', progress + '%');
+            $('#progressText').text('Загрузка ' + Math.round(progress) + '%');
+            
+            // Обновление статуса
+            const statusText = $('.status-text');
+            if (progress < 30) {
+                statusText.text('Установка соединения...');
+            } else if (progress < 70) {
+                statusText.text('Загрузка ресурсов...');
+            } else if (progress < 100) {
+                statusText.text('Финальная подготовка...');
+            } else {
+                statusText.text('Готово к высадке!');
+            }
+        };
+        
+        window.UpdateHostname = function(name) {
+            $('#hostname').text(name);
+        };
+        
+        window.UpdateMap = function(map) {
+            $('#map').text('ТВД: ' + map);
+        };
+        
+        window.UpdatePlayers = function(current, max) {
+            $('#players').text(current + '/' + max);
+            $('#playerCount').text('СОЛДАТ НА ПОЛЕ: ' + current + '/' + max);
+        };
+        
+        window.DownloadingFile = function(fileName) {
+            $('#fileText').text('Загрузка: ' + fileName);
+        };
+        
+        window.LoadingFinished = function() {
+            $('#progressText').text('Загрузка завершена!');
+            $('.status-text').text('Нажмите ПРОБЕЛ для продолжения');
+            $('#progressBar .progress-fill').css('width', '100%');
+            
+            setTimeout(function() {
+                // Обычно здесь закрывается экран загрузки
+                console.log('Загрузка завершена');
+            }, 2000);
+        };
     </script>
-    <link
-      href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed|Ubuntu+Mono&display=swap"
-      rel="stylesheet"
-    />
-    <!-- <link rel="stylesheet" href="css/main.css" /> -->
-    <title>Loading Screen | By Exsite</title>
-  </head>
-  <body>
-    <div class="background"></div>
-    <div class="overhaul"></div>
-
-    <nav>
-      <div id="announcement"></div>
-      <span id="map">Карта сервера: </span>
-      <span id="steamid"></span>
-    </nav>
-
-    <div id="debug"></div>
-
-    <main>
-      <div class="title">
-        <h2>Добро пожаловать на</h2>
-        <h1 id="title"></h1>
-        <div id="history"></div>
-      </div>
-      <div class="under-nav"></div>
-      <div class="loading-box"></div>
-    </main>
-
-    <script src="js/lib/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript">
-      document.write(
-        '<script src="js/config.js?' + Math.random() + '"><\/script>'
-      );
-      document.write(
-        '<script src="js/main.js?' + Math.random() + '"><\/script>'
-      );
-    </script>
-    <!-- <script src="config.js"></script> -->
-    <!-- <script src="js/main.js"></script> -->
-  </body>
+</body>
 </html>
