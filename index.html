@@ -8,12 +8,12 @@
     <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Playfair+Display:wght@700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Playfair+Display:wght@700&family=Cinzel:wght@700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     
     <!-- Иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- INLINE CSS (чтобы сразу работало) -->
+    <!-- INLINE CSS -->
     <style>
         /* ===== СБРОС И БАЗОВЫЕ СТИЛИ ===== */
         * {
@@ -30,8 +30,6 @@
             height: 100vh;
             overflow: hidden;
             position: relative;
-            opacity: 1 !important;
-            visibility: visible !important;
         }
 
         /* ===== ФОНОВЫЕ СЛОИ ===== */
@@ -41,7 +39,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(10, 20, 5, 0.9), rgba(5, 10, 2, 0.9)), 
+            background: linear-gradient(rgba(20, 10, 5, 0.95), rgba(10, 5, 2, 0.95)), 
                         url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
             background-size: cover;
             z-index: -3;
@@ -53,7 +51,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 25, 10, 0.7);
+            background: rgba(15, 10, 5, 0.85);
             z-index: -2;
         }
 
@@ -78,8 +76,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(25, 30, 20, 0.95);
-            border-bottom: 2px solid #8b7355;
+            background: rgba(30, 20, 15, 0.95);
+            border-bottom: 2px solid #8b4513;
             padding: 12px 20px;
             height: 60px;
             position: relative;
@@ -92,20 +90,20 @@
             gap: 20px;
         }
 
-        .faction-badge {
+        .server-badge {
             display: flex;
             align-items: center;
             gap: 10px;
             color: #d4af37;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .faction-badge i {
-            color: #ffcc5c;
-            font-size: 1.2rem;
+        .server-badge i {
+            color: #8b0000;
+            font-size: 1.3rem;
         }
 
         .server-status {
@@ -134,18 +132,18 @@
         .nav-center {
             flex-grow: 1;
             text-align: center;
-            color: #ffcc5c;
+            color: #d4af37;
             font-weight: bold;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 15px;
             font-size: 1.1rem;
-            text-shadow: 0 0 10px rgba(255, 204, 92, 0.5);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
 
         .nav-center i {
-            color: #ff9800;
+            color: #8b0000;
             animation: bounce 2s infinite;
         }
 
@@ -163,7 +161,7 @@
         }
 
         .nav-info i {
-            color: #8b7355;
+            color: #8b4513;
         }
 
         /* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
@@ -183,8 +181,8 @@
 
         /* ===== ОБЩИЕ СТИЛИ ПАНЕЛЕЙ ===== */
         .panel-military {
-            background: rgba(30, 35, 25, 0.85);
-            border: 2px solid #5d4a2e;
+            background: rgba(40, 30, 20, 0.85);
+            border: 2px solid #8b4513;
             border-radius: 4px;
             padding: 20px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
@@ -199,12 +197,12 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #8b7355, #d4af37, #8b7355);
+            background: linear-gradient(90deg, #8b0000, #d4af37, #8b0000);
         }
 
         .panel-header {
             color: #d4af37;
-            border-bottom: 1px solid #5d4a2e;
+            border-bottom: 1px solid #8b4513;
             padding-bottom: 12px;
             margin-bottom: 20px;
             font-family: 'Oswald', sans-serif;
@@ -226,7 +224,7 @@
         }
 
         .panel-divider span {
-            background: rgba(30, 35, 25, 0.95);
+            background: rgba(40, 30, 20, 0.95);
             padding: 0 20px;
             color: #c9b18b;
             font-size: 0.9rem;
@@ -242,7 +240,7 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, #8b7355, transparent);
+            background: linear-gradient(90deg, transparent, #8b4513, transparent);
             z-index: -1;
         }
 
@@ -264,19 +262,19 @@
             align-items: center;
             gap: 15px;
             padding: 15px;
-            background: rgba(40, 45, 35, 0.6);
-            border-left: 4px solid #d4af37;
+            background: rgba(50, 40, 30, 0.6);
+            border-left: 4px solid #8b0000;
             border-radius: 2px;
             transition: transform 0.3s, background 0.3s;
         }
 
         .info-item:hover {
             transform: translateX(5px);
-            background: rgba(50, 55, 40, 0.7);
+            background: rgba(60, 50, 40, 0.7);
         }
 
         .info-icon {
-            color: #d4af37;
+            color: #8b0000;
             font-size: 1.3rem;
             min-width: 40px;
             text-align: center;
@@ -303,7 +301,7 @@
             font-family: 'Oswald', sans-serif;
         }
 
-        .battle-stats {
+        .server-stats {
             display: flex;
             justify-content: space-between;
             margin-top: 25px;
@@ -313,10 +311,10 @@
         .stat {
             text-align: center;
             padding: 20px 10px;
-            background: rgba(20, 25, 15, 0.7);
+            background: rgba(30, 20, 15, 0.7);
             border-radius: 4px;
             flex: 1;
-            border: 1px solid #5d4a2e;
+            border: 1px solid #8b4513;
             transition: all 0.3s;
         }
 
@@ -352,24 +350,24 @@
             min-width: 500px;
         }
 
-        .welcome-title {
+        .server-title {
             text-align: center;
             padding: 25px;
-            background: rgba(25, 30, 20, 0.9);
-            border: 2px solid #8b7355;
+            background: rgba(30, 20, 15, 0.9);
+            border: 2px solid #8b4513;
             border-radius: 4px;
             position: relative;
             overflow: hidden;
         }
 
-        .welcome-title::before {
+        .server-title::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 100%;
-            background: linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.1) 50%, transparent 70%);
+            background: linear-gradient(45deg, transparent 30%, rgba(139, 0, 0, 0.1) 50%, transparent 70%);
             animation: shine 3s infinite;
         }
 
@@ -378,21 +376,20 @@
             100% { transform: translateX(100%); }
         }
 
-        .welcome-title h2 {
+        .server-title h2 {
             color: #d4af37;
             font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        .welcome-title h1 {
+        .server-title h1 {
             color: #c9b18b;
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: normal;
-            font-style: italic;
         }
 
         /* ПРОГРЕСС ЗАГРУЗКИ */
@@ -408,7 +405,7 @@
         }
 
         .loading-header h3 {
-            color: #ffcc5c;
+            color: #d4af37;
             font-family: 'Oswald', sans-serif;
             font-size: 1.3rem;
             display: flex;
@@ -448,8 +445,8 @@
         .progress-bar {
             width: 100%;
             height: 35px;
-            background: rgba(40, 45, 35, 0.8);
-            border: 2px solid #5d4a2e;
+            background: rgba(50, 40, 30, 0.8);
+            border: 2px solid #8b4513;
             border-radius: 4px;
             overflow: hidden;
             position: relative;
@@ -459,8 +456,8 @@
         .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #3a2c1a, #8b7355, #c9b18b, #d4af37);
-            transition: width 0.5s ease;
+            background: linear-gradient(90deg, #8b0000, #8b4513, #d4af37);
+            transition: width 0.3s ease;
             position: relative;
             overflow: hidden;
         }
@@ -506,13 +503,13 @@
         .loading-tips {
             margin-top: 25px;
             padding: 20px;
-            background: rgba(58, 44, 26, 0.4);
-            border-left: 5px solid #d4af37;
+            background: rgba(139, 69, 19, 0.2);
+            border-left: 5px solid #8b0000;
             border-radius: 0 4px 4px 0;
         }
 
         .loading-tips h4 {
-            color: #ffcc5c;
+            color: #d4af37;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -541,7 +538,7 @@
         }
 
         .news-header h3 {
-            color: #ffcc5c;
+            color: #d4af37;
             font-family: 'Oswald', sans-serif;
             font-size: 1.3rem;
             display: flex;
@@ -553,31 +550,31 @@
             color: #d4af37;
             font-weight: bold;
             font-size: 1.1rem;
-            background: rgba(139, 115, 85, 0.3);
+            background: rgba(139, 69, 19, 0.3);
             padding: 5px 15px;
             border-radius: 4px;
-            border: 1px solid #8b7355;
+            border: 1px solid #8b4513;
         }
 
         .news-ticker {
             height: 200px;
             overflow-y: auto;
             padding: 15px;
-            background: rgba(20, 25, 15, 0.6);
-            border: 1px solid #3a2c1a;
+            background: rgba(30, 20, 15, 0.6);
+            border: 1px solid #8b4513;
             border-radius: 4px;
         }
 
         .news-item {
             padding: 12px 0;
-            border-bottom: 1px dashed #5d4a2e;
+            border-bottom: 1px dashed #8b4513;
             display: flex;
             gap: 20px;
             transition: background 0.3s;
         }
 
         .news-item:hover {
-            background: rgba(139, 115, 85, 0.1);
+            background: rgba(139, 69, 19, 0.1);
             padding-left: 10px;
             padding-right: 10px;
             margin: 0 -10px;
@@ -626,22 +623,22 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .faction-allies {
-            background: rgba(42, 92, 139, 0.25);
-            border-left: 6px solid #2a5c8b;
-            border-top: 1px solid rgba(42, 92, 139, 0.5);
+        .faction-german {
+            background: rgba(139, 0, 0, 0.25);
+            border-left: 6px solid #8b0000;
+            border-top: 1px solid rgba(139, 0, 0, 0.5);
         }
 
-        .faction-axis {
-            background: rgba(139, 42, 42, 0.25);
-            border-left: 6px solid #8b2a2a;
-            border-top: 1px solid rgba(139, 42, 42, 0.5);
+        .faction-soviet {
+            background: rgba(139, 69, 19, 0.25);
+            border-left: 6px solid #8b4513;
+            border-top: 1px solid rgba(139, 69, 19, 0.5);
         }
 
         .faction-civilian {
-            background: rgba(42, 139, 92, 0.25);
-            border-left: 6px solid #2a8b5c;
-            border-top: 1px solid rgba(42, 139, 92, 0.5);
+            background: rgba(128, 128, 128, 0.25);
+            border-left: 6px solid #696969;
+            border-top: 1px solid rgba(128, 128, 128, 0.5);
         }
 
         .faction-header {
@@ -654,6 +651,18 @@
 
         .faction-header i {
             font-size: 1.3rem;
+        }
+
+        .faction-german .faction-header i {
+            color: #8b0000;
+        }
+
+        .faction-soviet .faction-header i {
+            color: #8b4513;
+        }
+
+        .faction-civilian .faction-header i {
+            color: #696969;
         }
 
         .faction-header h4 {
@@ -700,7 +709,7 @@
             gap: 15px;
             padding: 12px 0;
             color: #c0b090;
-            border-bottom: 1px solid rgba(93, 74, 46, 0.4);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.4);
             transition: color 0.3s, transform 0.3s;
         }
 
@@ -714,14 +723,14 @@
         }
 
         .rule-item i {
-            color: #ff6b6b;
+            color: #8b0000;
             min-width: 20px;
         }
 
         /* ===== ФУТЕР ===== */
         .military-footer {
-            background: rgba(20, 25, 15, 0.98);
-            border-top: 2px solid #5d4a2e;
+            background: rgba(30, 20, 15, 0.98);
+            border-top: 2px solid #8b4513;
             padding: 12px 20px;
             height: 50px;
             position: relative;
@@ -755,16 +764,16 @@
             gap: 10px;
             cursor: pointer;
             padding: 8px 15px;
-            background: rgba(58, 44, 26, 0.6);
+            background: rgba(139, 69, 19, 0.6);
             border-radius: 4px;
-            border: 1px solid #8b7355;
+            border: 1px solid #8b4513;
             transition: all 0.3s;
             color: #c9b18b;
             font-weight: 500;
         }
 
         .audio-control:hover {
-            background: rgba(88, 64, 36, 0.8);
+            background: rgba(139, 0, 0, 0.8);
             border-color: #d4af37;
             color: #ffcc5c;
             transform: scale(1.05);
@@ -776,18 +785,18 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(30, 35, 25, 0.8);
+            background: rgba(40, 30, 20, 0.8);
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #8b7355, #5d4a2e);
+            background: linear-gradient(180deg, #8b4513, #8b0000);
             border-radius: 4px;
-            border: 2px solid rgba(30, 35, 25, 0.8);
+            border: 2px solid rgba(40, 30, 20, 0.8);
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #c9b18b, #8b7355);
+            background: linear-gradient(180deg, #d4af37, #8b4513);
         }
 
         /* ===== АДАПТИВНОСТЬ ===== */
@@ -831,11 +840,11 @@
                 font-size: 0.9rem;
             }
             
-            .welcome-title h2 {
+            .server-title h2 {
                 font-size: 1.4rem;
             }
             
-            .welcome-title h1 {
+            .server-title h1 {
                 font-size: 1.2rem;
             }
         }
@@ -853,12 +862,12 @@
             color: #d4af37 !important;
         }
 
-        .text-green {
-            color: #4CAF50 !important;
+        .text-red {
+            color: #8b0000 !important;
         }
 
-        .text-red {
-            color: #f44336 !important;
+        .text-brown {
+            color: #8b4513 !important;
         }
 
         .mb-10 { margin-bottom: 10px; }
@@ -879,7 +888,7 @@
         .right-panel { animation: fadeIn 0.5s ease 0.3s both; }
     </style>
     
-    <title>Операция "Оверлорд" | WW2 DarkRP</title>
+    <title>CELESTIAL | WW2 RP | RU</title>
 </head>
 <body>
     <!-- Фоновые слои -->
@@ -887,39 +896,34 @@
     <div class="overlay-layer"></div>
     <div class="scanlines"></div>
     
-    <!-- Аудио (неавтоплей) -->
-    <audio id="ambientAudio" loop preload="auto" volume="0.3">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-sad-war-drum-579.mp3" type="audio/mpeg">
-    </audio>
-    
     <!-- Основной контейнер -->
     <div class="main-container">
         <!-- Навигация -->
         <nav class="military-nav">
             <div class="nav-left">
-                <div class="faction-badge">
-                    <i class="fas fa-star-of-life"></i>
-                    <span>СОЮЗНИЧЕСКИЕ СИЛЫ</span>
+                <div class="server-badge">
+                    <i class="fas fa-crown"></i>
+                    <span>CELESTIAL | WW2 RP</span>
                 </div>
                 <div class="server-status">
                     <span class="status-indicator"></span>
-                    <span id="playerCount">СВЯЗЬ: УСТАНОВЛЕНА</span>
+                    <span id="playerCount">ПОДКЛЮЧЕНИЕ...</span>
                 </div>
             </div>
             
             <div class="nav-center" id="announcement">
                 <i class="fas fa-bullhorn"></i>
-                <span class="announcement-text">ВНИМАНИЕ: Высадка в Нормандии начата. Все новобранцы - на сборные пункты!</span>
+                <span class="announcement-text">ДОБРО ПОЖАЛОВАТЬ НА РОЛЕВОЙ ПРОЕКТ ВТОРОЙ МИРОВОЙ ВОЙНЫ</span>
             </div>
             
             <div class="nav-right">
                 <div class="nav-info">
                     <i class="fas fa-map-marked-alt"></i>
-                    <span id="map">ТВД: Нормандия</span>
+                    <span id="map">Загрузка карты...</span>
                 </div>
                 <div class="nav-info">
                     <i class="fas fa-id-card"></i>
-                    <span id="steamid">ID: Загрузка...</span>
+                    <span id="steamid">SteamID: Загрузка...</span>
                 </div>
             </div>
         </nav>
@@ -929,17 +933,17 @@
             <!-- Левая панель -->
             <div class="left-panel panel-military">
                 <div class="panel-header">
-                    <h2><i class="fas fa-tasks"></i> КОМАНДНЫЙ ЦЕНТР</h2>
+                    <h2><i class="fas fa-server"></i> ИНФОРМАЦИЯ О СЕРВЕРЕ</h2>
                 </div>
                 
                 <div class="server-info">
                     <div class="info-item">
                         <div class="info-icon">
-                            <i class="fas fa-flag"></i>
+                            <i class="fas fa-crown"></i>
                         </div>
                         <div class="info-content">
-                            <span class="info-label">Операция</span>
-                            <span id="title" class="info-value">"Оверлорд"</span>
+                            <span class="info-label">Проект</span>
+                            <span id="title" class="info-value">CELESTIAL | WW2 RP</span>
                         </div>
                     </div>
                     
@@ -948,8 +952,8 @@
                             <i class="fas fa-user-shield"></i>
                         </div>
                         <div class="info-content">
-                            <span class="info-label">Главнокомандующий</span>
-                            <span id="hostname" class="info-value">Штаб Союзников</span>
+                            <span class="info-label">Администрация</span>
+                            <span id="hostname" class="info-value">Командование Вермахта</span>
                         </div>
                     </div>
                     
@@ -958,8 +962,8 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="info-content">
-                            <span class="info-label">Личный состав</span>
-                            <span id="players" class="info-value">0/100</span>
+                            <span class="info-label">Игроков онлайн</span>
+                            <span id="players" class="info-value">0/64</span>
                         </div>
                     </div>
                     
@@ -969,45 +973,45 @@
                         </div>
                         <div class="info-content">
                             <span class="info-label">Версия</span>
-                            <span class="info-value">WW2 DarkRP v2.5</span>
+                            <span class="info-value">WW2 RP v3.1</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="panel-divider">
-                    <span>БОЕВАЯ СВОДКА</span>
+                    <span>СТАТИСТИКА СЕРВЕРА</span>
                 </div>
                 
-                <div class="battle-stats">
+                <div class="server-stats">
                     <div class="stat">
-                        <span class="stat-value">74%</span>
-                        <span class="stat-label">Контроль территории</span>
+                        <span class="stat-value">24/7</span>
+                        <span class="stat-label">Работает</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-value">12</span>
-                        <span class="stat-label">Захваченных пунктов</span>
+                        <span class="stat-value">64</span>
+                        <span class="stat-label">Макс. слот</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-value">48ч</span>
-                        <span class="stat-label">Длится операция</span>
+                        <span class="stat-value">RU</span>
+                        <span class="stat-label">Регион</span>
                     </div>
                 </div>
             </div>
             
             <!-- Центральная панель -->
             <div class="center-panel">
-                <div class="welcome-title">
-                    <h2>ДОБРО ПОЖАЛОВАТЬ НА ПОЛЕ БОЯ, СОЛДАТ</h2>
-                    <h1 id="history">6 июня 1944 года. Нормандия, Франция</h1>
+                <div class="server-title">
+                    <h2>РОЛЕВОЙ ПРОЕКТ ВТОРОЙ МИРОВОЙ ВОЙНЫ</h2>
+                    <h1 id="history">Берлин, 1944 год. Жизнь солдата на Восточном фронте</h1>
                 </div>
                 
                 <!-- Прогресс загрузки -->
                 <div class="loading-section panel-military">
                     <div class="loading-header">
-                        <h3><i class="fas fa-sync-alt"></i> СТАТУС ЗАГРУЗКИ</h3>
+                        <h3><i class="fas fa-sync-alt"></i> ЗАГРУЗКА СЕРВЕРА</h3>
                         <div class="loading-status" id="debug">
                             <span class="status-dot"></span>
-                            <span class="status-text">Установка соединения...</span>
+                            <span class="status-text">Инициализация...</span>
                         </div>
                     </div>
                     
@@ -1017,41 +1021,41 @@
                                 <div class="progress-fill" id="progressBarFill"></div>
                             </div>
                             <div class="progress-labels">
-                                <span id="progressText">Инициализация 0%</span>
-                                <span id="fileText">Ожидание команд...</span>
+                                <span id="progressText">Загрузка: 0%</span>
+                                <span id="fileText">Ожидание данных...</span>
                             </div>
                         </div>
                     </div>
                     
                     <div class="loading-tips">
-                        <h4><i class="fas fa-lightbulb"></i> ТАКТИЧЕСКИЕ УКАЗАНИЯ</h4>
-                        <p id="tipText">Держитесь своего отделения и следуйте приказам офицера. Одиночки - легкая цель для снайперов.</p>
+                        <h4><i class="fas fa-lightbulb"></i> СОВЕТЫ НОВОБРАНЦАМ</h4>
+                        <p id="tipText">Соблюдайте правила ролевой игры и исторический антураж. Уважайте других игроков и администрацию.</p>
                     </div>
                 </div>
                 
                 <!-- Новости -->
                 <div class="news-section panel-military">
                     <div class="news-header">
-                        <h3><i class="fas fa-newspaper"></i> СВОДКА С ФРОНТА</h3>
-                        <div class="news-time" id="currentTime">16:12</div>
+                        <h3><i class="fas fa-newspaper"></i> НОВОСТИ ПРОЕКТА</h3>
+                        <div class="news-time" id="currentTime">--:--</div>
                     </div>
                     
                     <div class="news-ticker" id="newsContainer">
                         <div class="news-item">
-                            <span class="news-time">06:30</span>
-                            <span class="news-text">Воздушный десант захватил ключевые мосты за линией фронта.</span>
+                            <span class="news-time">14:30</span>
+                            <span class="news-text">Обновление ролевой системы: добавлены новые профессии для гражданских.</span>
                         </div>
                         <div class="news-item">
-                            <span class="news-time">07:15</span>
-                            <span class="news-text">Морская пехота закрепилась на пляже Омаха. Потери: значительные.</span>
+                            <span class="news-time">13:45</span>
+                            <span class="news-text">Исправлены баги с отображением униформы у немецких солдат.</span>
                         </div>
                         <div class="news-item">
-                            <span class="news-time">08:45</span>
-                            <span class="news-text">Танковая колонна Шерманов прорвала первую линию обороны.</span>
+                            <span class="news-time">12:20</span>
+                            <span class="news-text">Добавлены новые карты для городских сражений в Берлине.</span>
                         </div>
                         <div class="news-item">
-                            <span class="news-time">09:20</span>
-                            <span class="news-text">Авиация Люфтваффе атаковала транспортные конвои. ПВО в состоянии боевой готовности.</span>
+                            <span class="news-time">11:10</span>
+                            <span class="news-text">Обновлена система экономики и торговли на черном рынке.</span>
                         </div>
                     </div>
                 </div>
@@ -1060,24 +1064,35 @@
             <!-- Правая панель -->
             <div class="right-panel panel-military">
                 <div class="panel-header">
-                    <h2><i class="fas fa-users-cog"></i> ВОЮЮЩИЕ СТОРОНЫ</h2>
+                    <h2><i class="fas fa-users"></i> ДОСТУПНЫЕ ФРАКЦИИ</h2>
                 </div>
                 
                 <div class="factions">
-                    <div class="faction faction-allies">
+                    <div class="faction faction-german">
                         <div class="faction-header">
-                            <i class="fas fa-star"></i>
-                            <h4>СОЮЗНИКИ</h4>
+                            <i class="fas fa-crosshairs"></i>
+                            <h4>ВЕРМАХТ</h4>
                         </div>
                         <ul class="faction-list">
-                            <li>Пехота США/Великобритании</li>
+                            <li>Пехота Вермахта</li>
                             <li>Офицерский состав</li>
-                            <li>Медицинская служба</li>
-                            <li>Инженерные войска</li>
+                            <li>Войска СС</li>
                             <li>Танковые экипажи</li>
+                            <li>Снайперы</li>
+                            <li>Санитарная служба</li>
                         </ul>
                     </div>
                     
-                    <div class="faction faction-axis">
+                    <div class="faction faction-soviet">
                         <div class="faction-header">
-                            <i class="fas fa-crosshairs"></i>
+                            <i class="fas fa-star"></i>
+                            <h4>КРАСНАЯ АРМИЯ</h4>
+                        </div>
+                        <ul class="faction-list">
+                            <li>Советская пехота</li>
+                            <li>Командиры отделений</li>
+                            <li>Танкисты</li>
+                            <li>Снайперы</li>
+                            <li>Медицинский персонал</li>
+                        </ul>
+                    </
